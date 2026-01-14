@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Data Siswa Sosial Humaniora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-light: #eef2ff;
+      --secondary: #3a0ca3;
+      --accent: #4cc9f0;
+      --text: #2b2d42;
+      --text-light: #8d99ae;
+      --background: #f8f9fa;
+      --card: #ffffff;
+      --shadow: rgba(67, 97, 238, 0.1);
+      --success: #4ade80;
+      --border: #e9ecef;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Poppins', Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .app-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 8px 25px rgba(67, 97, 238, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+      background-size: cover;
+    }
+
+    .app-header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-header p {
+      font-size: 1rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .search-container {
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 18px 20px 18px 55px;
+      border: none;
+      border-radius: 16px;
+      background: var(--card);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 5px 15px var(--shadow);
+      transition: all 0.3s ease;
+      color: var(--text);
+    }
+
+    .search-box:focus {
+      outline: none;
+      box-shadow: 0 8px 25px rgba(67, 97, 238, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .search-box::placeholder {
+      color: var(--text-light);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.2rem;
+      z-index: 2;
+    }
+
+    .student-count {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      margin-top: 12px;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+
+    .student-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+      margin-bottom: 40px;
+    }
+
+    .student-card {
+      background: var(--card);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px var(--shadow);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid var(--border);
+    }
+
+    .student-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(67, 97, 238, 0.15);
+    }
+
+    .student-photo {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .student-photo iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      transition: transform 0.5s ease;
+    }
+
+    .student-card:hover .student-photo iframe {
+      transform: scale(1.05);
+    }
+
+    .student-info {
+      padding: 22px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .student-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .student-class {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 0.95rem;
+      background: var(--primary-light);
+      padding: 6px 14px;
+      border-radius: 50px;
+      align-self: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .student-class::before {
+      content: "🏫";
+      margin-right: 8px;
+      font-size: 0.9rem;
+    }
+
+    .no-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      font-size: 3rem;
+      height: 100%;
+    }
+
+    .loading, .no-results, .error {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    .loading::after {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-left: 15px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .no-results-icon, .error-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      display: block;
+      opacity: 0.5;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px;
+      color: var(--text-light);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .app-header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .student-list {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      
+      .search-box {
+        padding: 16px 20px 16px 50px;
+      }
+      
+      body {
+        padding: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app-header {
+        padding: 18px 15px;
+      }
+      
+      .app-header h1 {
+        font-size: 1.6rem;
+      }
+      
+      .student-info {
+        padding: 18px;
+      }
+      
+      .student-name {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <h1>Data Siswa Sosial Humaniora</h1>
+      <p>Database siswa aktif dengan informasi lengkap dan terupdate</p>
+      <div class="student-count" id="student-count">Memuat data...</div>
+    </header>
+
+    <div class="search-container">
+      <div class="search-icon">🔍</div>
+      <input 
+        type="text" 
+        class="search-box" 
+        id="search-input" 
+        placeholder="Cari siswa berdasarkan nama atau kelas..."
+        aria-label="Cari siswa"
+      >
+    </div>
+
+    <div class="student-list" id="student-list">
+      <div class="loading">Memuat data siswa...</div>
+    </div>
+
+    <footer class="footer">
+      <p>Data diperbarui dari Google Sheets • <a href="https://docs.google.com/spreadsheets/d/1MyH_2bsqGYi-iVBa4sM7poBnDScK7EO88GAdO2F_j88" target="_blank">Lihat sumber data</a></p>
+    </footer>
+  </div>
+
+  <script>
+    const sheetID = "1MyH_2bsqGYi-iVBa4sM7poBnDScK7EO88GAdO2F_j88";
+    const sheetName = "Form Responses 1"; // ganti sesuai nama sheet aslimu
+    const query = encodeURIComponent("SELECT B, C, E"); 
+    // kolom: B=Nama, C=Kelas, E=Upload Foto
+
+    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?sheet=${sheetName}&tq=${query}`;
+    let allStudents = [];
+
+    // Fungsi untuk memuat data dari Google Sheets
+    function loadStudentData() {
+      fetch(url)
+        .then(res => res.text())
+        .then(rep => {
+          const data = JSON.parse(rep.substr(47).slice(0, -2));
+          const rows = data.table.rows;
+          allStudents = [];
+          
+          rows.forEach(r => {
+            const nama = r.c[0]?.v || "-";
+            const kelas = r.c[1]?.v || "-";
+            const fotoLink = r.c[2]?.v || "";
+            
+            // ubah link Google Drive menjadi link preview iframe
+            let iframeSrc = "";
+            if (fotoLink.includes("drive.google.com")) {
+              const match = fotoLink.match(/\/d\/(.*?)(\/|$)/);
+              if (match) iframeSrc = `https://drive.google.com/file/d/${match[1]}/preview`;
+            }
+            
+            allStudents.push({
+              nama: nama.trim(),
+              kelas: kelas.trim(),
+              foto: iframeSrc,
+              displayName: nama.toLowerCase(),
+              displayClass: kelas.toLowerCase()
+            });
+          });
+          
+          updateStudentCount(allStudents.length);
+          renderStudentList(allStudents);
+        })
+        .catch(err => {
+          showError();
+          console.error(err);
+        });
+    }
+
+    // Fungsi untuk menampilkan daftar siswa
+    function renderStudentList(students) {
+      const container = document.getElementById("student-list");
+      
+      if (students.length === 0) {
+        container.innerHTML = `
+          <div class="no-results">
+            <span class="no-results-icon">🔍</span>
+            <p>Tidak ditemukan siswa yang sesuai dengan pencarian</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = "";
+      
+      students.forEach(student => {
+        const studentCard = document.createElement("div");
+        studentCard.className = "student-card";
+        
+        const photoContent = student.foto 
+          ? `<iframe src="${student.foto}" allowfullscreen title="Foto ${student.nama}"></iframe>`
+          : `<div class="no-photo">📷</div>`;
+        
+        studentCard.innerHTML = `
+          <div class="student-photo">
+            ${photoContent}
+          </div>
+          <div class="student-info">
+            <h3 class="student-name">${student.nama}</h3>
+            <div class="student-class">${student.kelas}</div>
+          </div>
+        `;
+        
+        container.appendChild(studentCard);
+      });
+    }
+
+    // Fungsi untuk menampilkan error
+    function showError() {
+      const container = document.getElementById("student-list");
+      container.innerHTML = `
+        <div class="error">
+          <span class="error-icon">⚠️</span>
+          <p>Gagal memuat data. Pastikan koneksi internet tersedia dan Sheet diset publik.</p>
+          <button onclick="loadStudentData()" style="margin-top: 15px; padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer;">Coba Lagi</button>
+        </div>
+      `;
+      document.getElementById("student-count").textContent = "Error memuat data";
+    }
+
+    // Fungsi untuk memperbarui jumlah siswa
+    function updateStudentCount(count) {
+      const countElement = document.getElementById("student-count");
+      countElement.textContent = `${count} Siswa Terdaftar`;
+    }
+
+    // Fungsi untuk melakukan pencarian
+    function searchStudents() {
+      const searchTerm = document.getElementById("search-input").value.toLowerCase().trim();
+      
+      if (searchTerm === "") {
+        renderStudentList(allStudents);
+        updateStudentCount(allStudents.length);
+        return;
+      }
+      
+      const filteredStudents = allStudents.filter(student => {
+        return student.displayName.includes(searchTerm) || 
+               student.displayClass.includes(searchTerm);
+      });
+      
+      renderStudentList(filteredStudents);
+      updateStudentCount(filteredStudents.length);
+    }
+
+    // Inisialisasi saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+      loadStudentData();
+      
+      // Tambahkan event listener untuk pencarian
+      const searchInput = document.getElementById("search-input");
+      searchInput.addEventListener('input', searchStudents);
+      
+      // Tambahkan event listener untuk enter pada pencarian
+      searchInput.addEventListener('keyup', function(event) {
+        if (event.key === "Enter") {
+          searchStudents();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
