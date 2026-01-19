@@ -1,947 +1,1338 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Data Siswa Sosial Humaniora</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #4361ee;
-      --primary-light: #eef2ff;
-      --secondary: #3a0ca3;
-      --accent: #4cc9f0;
-      --text: #2b2d42;
-      --text-light: #8d99ae;
-      --background: #f8f9fa;
-      --card: #ffffff;
-      --shadow: rgba(67, 97, 238, 0.1);
-      --success: #4ade80;
-      --warning: #f59e0b;
-      --border: #e9ecef;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Siswa Sosial Humaniora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Design System - Talwind Inspired */
+            --color-primary-50: #eff6ff;
+            --color-primary-100: #dbeafe;
+            --color-primary-500: #3b82f6;
+            --color-primary-600: #2563eb;
+            --color-primary-700: #1d4ed8;
+            
+            --color-success-50: #f0fdf4;
+            --color-success-500: #10b981;
+            --color-success-600: #059669;
+            
+            --color-warning-50: #fffbeb;
+            --color-warning-500: #f59e0b;
+            --color-warning-600: #d97706;
+            
+            --color-danger-50: #fef2f2;
+            --color-danger-500: #ef4444;
+            --color-danger-600: #dc2626;
+            
+            --color-gray-50: #f9fafb;
+            --color-gray-100: #f3f4f6;
+            --color-gray-200: #e5e7eb;
+            --color-gray-300: #d1d5db;
+            --color-gray-400: #9ca3af;
+            --color-gray-500: #6b7280;
+            --color-gray-600: #4b5563;
+            --color-gray-700: #374151;
+            --color-gray-800: #1f2937;
+            --color-gray-900: #111827;
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            --radius-sm: 0.25rem;
+            --radius: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', 'Poppins', Arial, sans-serif;
-      background: var(--background);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-      padding: 20px;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-gray-50);
+            color: var(--color-gray-800);
+            line-height: 1.5;
+            min-height: 100vh;
+            padding: 0;
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      width: 100%;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
 
-    .app-header {
-      text-align: center;
-      margin-bottom: 30px;
-      padding: 20px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      box-shadow: 0 8px 25px rgba(67, 97, 238, 0.25);
-      position: relative;
-      overflow: hidden;
-    }
+        /* Header Styles */
+        .app-header {
+            background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+            color: white;
+            padding: 2rem 1rem;
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .app-header::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
-      background-size: cover;
-    }
+        .app-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" opacity="0.1"><path d="M0,0 L100,0 L100,100 Z" fill="white"/></svg>');
+            background-size: cover;
+        }
 
-    .app-header h1 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-      position: relative;
-      z-index: 1;
-    }
+        .header-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
 
-    .app-header p {
-      font-size: 1rem;
-      opacity: 0.9;
-      max-width: 600px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
+        .app-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.025em;
+        }
 
-    .search-container {
-      margin-bottom: 30px;
-      position: relative;
-    }
+        .app-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 42rem;
+            margin: 0 auto 1.5rem;
+        }
 
-    .search-box {
-      width: 100%;
-      padding: 18px 20px 18px 55px;
-      border: none;
-      border-radius: 16px;
-      background: var(--card);
-      font-size: 1rem;
-      font-family: 'Inter', sans-serif;
-      box-shadow: 0 5px 15px var(--shadow);
-      transition: all 0.3s ease;
-      color: var(--text);
-    }
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
 
-    .search-box:focus {
-      outline: none;
-      box-shadow: 0 8px 25px rgba(67, 97, 238, 0.2);
-      transform: translateY(-2px);
-    }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 180px;
+        }
 
-    .search-box::placeholder {
-      color: var(--text-light);
-    }
+        .stat-icon {
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            width: 3rem;
+            height: 3rem;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .search-icon {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--primary);
-      font-size: 1.2rem;
-      z-index: 2;
-    }
+        .stat-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.125rem;
+        }
 
-    .student-count {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      margin-top: 12px;
-      font-weight: 500;
-      position: relative;
-      z-index: 1;
-    }
+        .stat-content p {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            margin: 0;
+        }
 
-    .student-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 22px;
-      margin-bottom: 40px;
-    }
+        /* Search Container */
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .student-card {
-      background: var(--card);
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px var(--shadow);
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      border: 1px solid var(--border);
-      cursor: pointer;
-    }
+        .search-box {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3.5rem;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            background-color: white;
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-xl);
+            transition: var(--transition);
+            color: var(--color-gray-800);
+            box-shadow: var(--shadow);
+        }
 
-    .student-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 30px rgba(67, 97, 238, 0.15);
-    }
+        .search-box:focus {
+            outline: none;
+            border-color: var(--color-primary-500);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), var(--shadow);
+        }
 
-    .student-photo {
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-    }
+        .search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-gray-400);
+            font-size: 1.25rem;
+        }
 
-    .student-photo iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      transition: transform 0.5s ease;
-    }
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
 
-    .student-card:hover .student-photo iframe {
-      transform: scale(1.05);
-    }
+        .filter-tab {
+            padding: 0.625rem 1.25rem;
+            background-color: white;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-gray-600);
+            cursor: pointer;
+            transition: var(--transition);
+        }
 
-    .student-info {
-      padding: 22px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
+        .filter-tab:hover {
+            background-color: var(--color-gray-50);
+            border-color: var(--color-gray-300);
+        }
 
-    .student-name {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      font-size: 1.3rem;
-      color: var(--text);
-      margin-bottom: 8px;
-      line-height: 1.3;
-    }
+        .filter-tab.active {
+            background-color: var(--color-primary-50);
+            border-color: var(--color-primary-500);
+            color: var(--color-primary-700);
+        }
 
-    .student-class {
-      display: inline-flex;
-      align-items: center;
-      color: var(--primary);
-      font-weight: 500;
-      font-size: 0.95rem;
-      background: var(--primary-light);
-      padding: 6px 14px;
-      border-radius: 50px;
-      align-self: flex-start;
-      margin-bottom: 15px;
-    }
+        /* Student Cards Grid */
+        .student-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
 
-    .student-class::before {
-      content: "🏫";
-      margin-right: 8px;
-      font-size: 0.9rem;
-    }
+        .student-card {
+            background-color: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid var(--color-gray-200);
+        }
 
-    .achievement-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #f59e0b, #fbbf24);
-      color: white;
-      font-weight: 600;
-      font-size: 0.85rem;
-      padding: 6px 14px;
-      border-radius: 50px;
-      align-self: flex-start;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+        .student-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-primary-100);
+        }
 
-    .achievement-badge:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(245, 158, 11, 0.2);
-    }
+        .student-photo {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--color-primary-100), var(--color-primary-50));
+        }
 
-    .achievement-badge::before {
-      content: "🏆";
-      margin-right: 8px;
-      font-size: 0.9rem;
-    }
+        .student-photo iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transition: transform 0.5s ease;
+        }
 
-    .no-photo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      color: white;
-      font-size: 3rem;
-      height: 100%;
-    }
+        .student-card:hover .student-photo iframe {
+            transform: scale(1.05);
+        }
 
-    .loading, .no-results, .error {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--text-light);
-      font-size: 1.1rem;
-    }
+        .no-photo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--color-primary-500);
+            font-size: 3.5rem;
+        }
 
-    .loading::after {
-      content: "";
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid var(--border);
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-left: 15px;
-      vertical-align: middle;
-    }
+        .student-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+        .student-name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: var(--color-gray-900);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
 
-    .no-results-icon, .error-icon {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      display: block;
-      opacity: 0.5;
-    }
+        .student-class {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--color-primary-50);
+            color: var(--color-primary-700);
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 0.375rem 0.875rem;
+            border-radius: var(--radius-full);
+            align-self: flex-start;
+            margin-bottom: 1rem;
+        }
 
-    /* Modal Prestasi */
-    .achievement-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      animation: fadeIn 0.3s ease;
-    }
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--color-warning-500), var(--color-warning-600));
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            align-self: flex-start;
+            margin-top: auto;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+        .achievement-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
 
-    .modal-content {
-      background: var(--card);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 600px;
-      max-height: 80vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      animation: slideUp 0.4s ease;
-    }
+        .achievement-badge.empty {
+            background: var(--color-gray-300);
+            color: var(--color-gray-600);
+            cursor: default;
+        }
 
-    @keyframes slideUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+        .achievement-badge.empty:hover {
+            transform: none;
+            box-shadow: none;
+        }
 
-    .modal-header {
-      padding: 25px 25px 15px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        /* Modal Styles */
+        .achievement-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
 
-    .modal-header h2 {
-      font-family: 'Poppins', sans-serif;
-      color: var(--primary);
-      font-size: 1.5rem;
-      margin: 0;
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-    .close-modal {
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      color: var(--text-light);
-      cursor: pointer;
-      padding: 0;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-    }
+        .modal-content {
+            background-color: white;
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 48rem;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.4s ease;
+        }
 
-    .close-modal:hover {
-      background: var(--background);
-      color: var(--text);
-    }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-    .modal-body {
-      padding: 25px;
-    }
+        .modal-header {
+            padding: 1.5rem 1.5rem 1rem;
+            border-bottom: 1px solid var(--color-gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-primary-50), white);
+        }
 
-    .achievement-list {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+        .modal-header h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-gray-900);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
 
-    .achievement-item {
-      padding: 20px;
-      background: var(--background);
-      border-radius: 12px;
-      border-left: 4px solid var(--primary);
-    }
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            color: var(--color-gray-500);
+            cursor: pointer;
+            padding: 0.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+        }
 
-    .achievement-title {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: var(--text);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .close-modal:hover {
+            background-color: var(--color-gray-100);
+            color: var(--color-gray-700);
+        }
 
-    .achievement-title::before {
-      content: "🏅";
-    }
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            max-height: calc(90vh - 5rem);
+        }
 
-    .achievement-details {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 0.9rem;
-    }
+        .achievement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
 
-    .achievement-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .achievement-item {
+            padding: 1.25rem;
+            background-color: var(--color-gray-50);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--color-primary-500);
+            transition: var(--transition);
+        }
 
-    .achievement-label {
-      font-weight: 500;
-      color: var(--primary);
-      min-width: 120px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+        .achievement-item:hover {
+            background-color: white;
+            box-shadow: var(--shadow);
+        }
 
-    .achievement-value {
-      color: var(--text);
-      flex: 1;
-    }
+        .achievement-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--color-gray-900);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
 
-    .level-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      margin-right: 8px;
-    }
+        .achievement-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 0.75rem;
+        }
 
-    .level-kecamatan { background: #dbeafe; color: #1e40af; }
-    .level-kabupaten { background: #e0e7ff; color: #3730a3; }
-    .level-provinsi { background: #ede9fe; color: #5b21b6; }
-    .level-nasional { background: #fce7f3; color: #9d174d; }
-    .level-internasional { background: #fef3c7; color: #92400e; }
+        .achievement-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
 
-    .no-achievements {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--text-light);
-    }
+        .achievement-label {
+            font-weight: 500;
+            color: var(--color-gray-600);
+            font-size: 0.875rem;
+            min-width: 100px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .no-achievements::before {
-      content: "📊";
-      font-size: 3rem;
-      display: block;
-      margin-bottom: 15px;
-      opacity: 0.5;
-    }
+        .achievement-value {
+            color: var(--color-gray-800);
+            flex: 1;
+            font-size: 0.875rem;
+        }
 
-    .footer {
-      text-align: center;
-      padding: 25px;
-      color: var(--text-light);
-      font-size: 0.9rem;
-      border-top: 1px solid var(--border);
-      margin-top: 20px;
-    }
+        .level-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+        }
 
-    .footer a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-    }
+        .level-kecamatan { background-color: #dbeafe; color: #1e40af; }
+        .level-kabupaten { background-color: #e0e7ff; color: #3730a3; }
+        .level-provinsi { background-color: #ede9fe; color: #5b21b6; }
+        .level-nasional { background-color: #fce7f3; color: #9d174d; }
+        .level-internasional { background-color: #fef3c7; color: #92400e; }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .app-header h1 {
-        font-size: 1.8rem;
-      }
-      
-      .student-list {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-      
-      .search-box {
-        padding: 16px 20px 16px 50px;
-      }
-      
-      body {
-        padding: 15px;
-      }
-      
-      .modal-content {
-        max-height: 85vh;
-      }
-      
-      .achievement-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-      }
-      
-      .achievement-label {
-        min-width: auto;
-      }
-    }
+        .sertifikat-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-primary-600);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 0.375rem 0.75rem;
+            background-color: var(--color-primary-50);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
 
-    @media (max-width: 480px) {
-      .app-header {
-        padding: 18px 15px;
-      }
-      
-      .app-header h1 {
-        font-size: 1.6rem;
-      }
-      
-      .student-info {
-        padding: 18px;
-      }
-      
-      .student-name {
-        font-size: 1.2rem;
-      }
-      
-      .modal-header {
-        padding: 20px 15px 10px;
-      }
-      
-      .modal-body {
-        padding: 15px;
-      }
-    }
-  </style>
+        .sertifikat-link:hover {
+            background-color: var(--color-primary-100);
+            color: var(--color-primary-700);
+        }
+
+        .no-achievements {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--color-gray-500);
+        }
+
+        .no-achievements i {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-gray-300);
+        }
+
+        .no-achievements h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-gray-600);
+        }
+
+        /* Loading and Error States */
+        .loading, .no-results, .error {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 1.5rem;
+            color: var(--color-gray-500);
+        }
+
+        .loading i {
+            font-size: 3rem;
+            color: var(--color-primary-500);
+            margin-bottom: 1.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .error i {
+            font-size: 3rem;
+            color: var(--color-danger-500);
+            margin-bottom: 1.5rem;
+        }
+
+        .retry-button {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--color-primary-600);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .retry-button:hover {
+            background-color: var(--color-primary-700);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--color-gray-500);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--color-gray-200);
+            margin-top: 3rem;
+            background-color: white;
+        }
+
+        .footer a {
+            color: var(--color-primary-600);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer a:hover {
+            color: var(--color-primary-700);
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app-header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .app-header p {
+                font-size: 1rem;
+            }
+            
+            .stat-box {
+                min-width: 140px;
+                padding: 0.875rem 1.25rem;
+            }
+            
+            .stat-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.25rem;
+            }
+            
+            .student-list {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            
+            .achievement-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                max-height: 95vh;
+            }
+            
+            .modal-body {
+                padding: 1.25rem;
+                max-height: calc(95vh - 4.5rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-header {
+                padding: 1.5rem 1rem;
+                border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-box {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .filter-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .student-photo {
+                height: 200px;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mt-1 { margin-top: 0.25rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-3 { margin-bottom: 0.75rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .w-full { width: 100%; }
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header class="app-header">
-      <h1>Data Siswa Sosial Humaniora</h1>
-      <p>Database siswa aktif dengan informasi prestasi lengkap</p>
-      <div class="student-count" id="student-count">Memuat data...</div>
-    </header>
-
-    <div class="search-container">
-      <div class="search-icon">🔍</div>
-      <input 
-        type="text" 
-        class="search-box" 
-        id="search-input" 
-        placeholder="Cari siswa berdasarkan nama atau kelas..."
-        aria-label="Cari siswa"
-      >
-    </div>
-
-    <div class="student-list" id="student-list">
-      <div class="loading">Memuat data siswa...</div>
-    </div>
-
-    <!-- Modal untuk menampilkan prestasi -->
-    <div class="achievement-modal" id="achievement-modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 id="modal-title">Prestasi Siswa</h2>
-          <button class="close-modal" id="close-modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div id="achievement-container"></div>
-        </div>
-      </div>
-    </div>
-
-    <footer class="footer">
-      <p>Data diperbarui dari Google Sheets • <a href="https://docs.google.com/spreadsheets/d/1MyH_2bsqGYi-iVBa4sM7poBnDScK7EO88GAdO2F_j88" target="_blank">Lihat sumber data</a></p>
-    </footer>
-  </div>
-
-  <script>
-    const studentSheetID = "1MyH_2bsqGYi-iVBa4sM7poBnDScK7EO88GAdO2F_j88";
-    const achievementSheetID = "1-r5AOD55cd85-i3k5g9Ntr3CP8JbVJct7mLyKhbGHOc";
-    const studentSheetName = "Form Responses 1";
-    const achievementSheetName = "Form Responses 1"; // Asumsi sheet prestasi sama
-    
-    // Query untuk data siswa
-    const studentQuery = encodeURIComponent("SELECT B, C, E");
-    const studentUrl = `https://docs.google.com/spreadsheets/d/${studentSheetID}/gviz/tq?sheet=${studentSheetName}&tq=${studentQuery}`;
-    
-    // Query untuk data prestasi
-    const achievementQuery = encodeURIComponent("SELECT B, C, D, F, G, H");
-    const achievementUrl = `https://docs.google.com/spreadsheets/d/${achievementSheetID}/gviz/tq?sheet=${achievementSheetName}&tq=${achievementQuery}`;
-    
-    let allStudents = [];
-    let allAchievements = [];
-    
-    // Fungsi untuk memuat data siswa
-    function loadStudentData() {
-      fetch(studentUrl)
-        .then(res => res.text())
-        .then(rep => {
-          const data = JSON.parse(rep.substr(47).slice(0, -2));
-          const rows = data.table.rows;
-          allStudents = [];
-          
-          rows.forEach(r => {
-            const nama = r.c[0]?.v || "-";
-            const kelas = r.c[1]?.v || "-";
-            const fotoLink = r.c[2]?.v || "";
-            
-            let iframeSrc = "";
-            if (fotoLink.includes("drive.google.com")) {
-              const match = fotoLink.match(/\/d\/(.*?)(\/|$)/);
-              if (match) iframeSrc = `https://drive.google.com/file/d/${match[1]}/preview`;
-            }
-            
-            allStudents.push({
-              nama: nama.trim(),
-              kelas: kelas.trim(),
-              foto: iframeSrc,
-              displayName: nama.toLowerCase(),
-              displayClass: kelas.toLowerCase(),
-              achievements: [] // Akan diisi setelah data prestasi dimuat
-            });
-          });
-          
-          // Setelah data siswa dimuat, muat data prestasi
-          loadAchievementData();
-        })
-        .catch(err => {
-          showError("Gagal memuat data siswa");
-          console.error(err);
-        });
-    }
-    
-    // Fungsi untuk memuat data prestasi
-    function loadAchievementData() {
-      fetch(achievementUrl)
-        .then(res => res.text())
-        .then(rep => {
-          const data = JSON.parse(rep.substr(47).slice(0, -2));
-          const rows = data.table.rows;
-          allAchievements = [];
-          
-          rows.forEach(r => {
-            // Skip baris pertama (header) jika perlu
-            const namaPeserta = r.c[0]?.v || "";
-            const tingkatJuara = r.c[1]?.v || "";
-            const juara = r.c[2]?.v || "";
-            const sertifikat = r.c[3]?.v || "";
-            const tanggalLomba = r.c[4]?.v || "";
-            const penyelenggara = r.c[5]?.v || "";
-            
-            // Data dari sheet prestasi menunjukkan format nama bisa berisi beberapa nama
-            // Misal: "ANGGIT PARAMITA AMIN, SUKMA DINA LESTARI, NIKITA AYU SABRINA"
-            if (namaPeserta && namaPeserta !== "Nama Peserta") {
-              // Pisahkan nama-nama jika ada koma
-              const namaArray = namaPeserta.split(',').map(n => n.trim());
-              
-              namaArray.forEach(nama => {
-                if (nama) {
-                  allAchievements.push({
-                    namaPeserta: nama,
-                    tingkatJuara: tingkatJuara.trim(),
-                    juara: juara.trim(),
-                    sertifikat: sertifikat.trim(),
-                    tanggalLomba: tanggalLomba.trim(),
-                    penyelenggara: penyelenggara.trim()
-                  });
-                }
-              });
-            }
-          });
-          
-          // Hubungkan prestasi dengan siswa
-          matchAchievementsWithStudents();
-          
-          updateStudentCount(allStudents.length);
-          renderStudentList(allStudents);
-        })
-        .catch(err => {
-          showError("Gagal memuat data prestasi");
-          console.error(err);
-        });
-    }
-    
-    // Fungsi untuk menghubungkan prestasi dengan siswa berdasarkan nama
-    function matchAchievementsWithStudents() {
-      // Reset prestasi semua siswa
-      allStudents.forEach(student => {
-        student.achievements = [];
-      });
-      
-      // Untuk setiap prestasi, cari siswa dengan nama yang cocok
-      allAchievements.forEach(achievement => {
-        const achievementName = achievement.namaPeserta.toLowerCase();
-        
-        // Cari siswa dengan nama yang cocok (partial match untuk mengakomodasi variasi penulisan)
-        const matchingStudents = allStudents.filter(student => {
-          const studentName = student.nama.toLowerCase();
-          // Cek apakah nama siswa mengandung nama prestasi atau sebaliknya
-          // Ini untuk mengatasi perbedaan penulisan seperti "NIKITA AYU SABRINA" vs "Nikita Ayu Sabrina"
-          return studentName.includes(achievementName) || 
-                 achievementName.includes(studentName) ||
-                 studentName.replace(/\s/g, '') === achievementName.replace(/\s/g, '');
-        });
-        
-        // Tambahkan prestasi ke setiap siswa yang cocok
-        matchingStudents.forEach(student => {
-          student.achievements.push(achievement);
-        });
-      });
-      
-      // Juga lakukan pencarian dengan menghapus gelar atau bagian nama yang umum
-      allAchievements.forEach(achievement => {
-        const achievementName = achievement.namaPeserta.toLowerCase();
-        
-        // Coba cari kecocokan dengan menghapus kata yang umum
-        const simpleAchievementName = achievementName
-          .replace(/[.,]/g, '')
-          .replace(/\b(s\.|s\.h\.|s\.pd\.|s\.pd|s\.si\.|s\.e\.|s\.kom\.|s\.tp\.|s\.ag\.|s\.fil\.)\b/g, '')
-          .trim();
-          
-        allStudents.forEach(student => {
-          const studentName = student.nama.toLowerCase();
-          const simpleStudentName = studentName
-            .replace(/[.,]/g, '')
-            .replace(/\b(s\.|s\.h\.|s\.pd\.|s\.pd|s\.si\.|s\.e\.|s\.kom\.|s\.tp\.|s\.ag\.|s\.fil\.)\b/g, '')
-            .trim();
-            
-          // Cek apakah sudah memiliki prestasi ini
-          const alreadyHasAchievement = student.achievements.some(a => 
-            a.namaPeserta === achievement.namaPeserta &&
-            a.juara === achievement.juara &&
-            a.tanggalLomba === achievement.tanggalLomba
-          );
-          
-          // Jika nama sederhana cocok dan belum ada prestasi ini
-          if (!alreadyHasAchievement && 
-              (simpleStudentName === simpleAchievementName ||
-               simpleStudentName.includes(simpleAchievementName) ||
-               simpleAchievementName.includes(simpleStudentName))) {
-            student.achievements.push(achievement);
-          }
-        });
-      });
-    }
-    
-    // Fungsi untuk menampilkan daftar siswa
-    function renderStudentList(students) {
-      const container = document.getElementById("student-list");
-      
-      if (students.length === 0) {
-        container.innerHTML = `
-          <div class="no-results">
-            <span class="no-results-icon">🔍</span>
-            <p>Tidak ditemukan siswa yang sesuai dengan pencarian</p>
-          </div>
-        `;
-        return;
-      }
-      
-      container.innerHTML = "";
-      
-      students.forEach(student => {
-        const studentCard = document.createElement("div");
-        studentCard.className = "student-card";
-        
-        const photoContent = student.foto 
-          ? `<iframe src="${student.foto}" allowfullscreen title="Foto ${student.nama}"></iframe>`
-          : `<div class="no-photo">📷</div>`;
-        
-        // Tampilkan jumlah prestasi
-        const achievementCount = student.achievements.length;
-        const achievementBadge = achievementCount > 0 
-          ? `<div class="achievement-badge" data-nama="${student.nama}">${achievementCount} Prestasi</div>`
-          : `<div class="achievement-badge" data-nama="${student.nama}" style="background: #e5e7eb; color: #6b7280;">0 Prestasi</div>`;
-        
-        studentCard.innerHTML = `
-          <div class="student-photo">
-            ${photoContent}
-          </div>
-          <div class="student-info">
-            <h3 class="student-name">${student.nama}</h3>
-            <div class="student-class">${student.kelas}</div>
-            ${achievementBadge}
-          </div>
-        `;
-        
-        // Tambahkan event listener untuk badge prestasi
-        const badge = studentCard.querySelector('.achievement-badge');
-        badge.addEventListener('click', function(e) {
-          e.stopPropagation(); // Mencegah event bubbling
-          showStudentAchievements(student);
-        });
-        
-        container.appendChild(studentCard);
-      });
-    }
-    
-    // Fungsi untuk menampilkan modal prestasi siswa
-    function showStudentAchievements(student) {
-      const modal = document.getElementById("achievement-modal");
-      const title = document.getElementById("modal-title");
-      const container = document.getElementById("achievement-container");
-      
-      title.textContent = `Prestasi ${student.nama}`;
-      
-      if (student.achievements.length === 0) {
-        container.innerHTML = `
-          <div class="no-achievements">
-            <p>Belum ada data prestasi untuk ${student.nama}</p>
-          </div>
-        `;
-      } else {
-        let achievementsHTML = '<div class="achievement-list">';
-        
-        student.achievements.forEach((achievement, index) => {
-          // Tentukan kelas CSS berdasarkan tingkat juara
-          let levelClass = "";
-          const tingkat = achievement.tingkatJuara.toLowerCase();
-          
-          if (tingkat.includes("kecamatan")) levelClass = "level-kecamatan";
-          else if (tingkat.includes("kabupaten")) levelClass = "level-kabupaten";
-          else if (tingkat.includes("provinsi")) levelClass = "level-provinsi";
-          else if (tingkat.includes("nasional")) levelClass = "level-nasional";
-          else if (tingkat.includes("internasional")) levelClass = "level-internasional";
-          
-          achievementsHTML += `
-            <div class="achievement-item">
-              <div class="achievement-title">Prestasi ${index + 1}</div>
-              <div class="achievement-details">
-                <div class="achievement-row">
-                  <div class="achievement-label">
-                    <span>🏆</span> Juara:
-                  </div>
-                  <div class="achievement-value">${achievement.juara}</div>
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>Data Siswa Sosial Humaniora</h1>
+                <p>Database siswa aktif dengan informasi prestasi lengkap dan terupdate</p>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="student-count">0</h3>
+                            <p>Siswa Terdaftar</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="achievement-count">0</h3>
+                            <p>Total Prestasi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="winner-count">0</h3>
+                            <p>Siswa Berprestasi</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="achievement-row">
-                  <div class="achievement-label">
-                    <span>📊</span> Tingkat:
-                  </div>
-                  <div class="achievement-value">
-                    <span class="level-badge ${levelClass}">${achievement.tingkatJuara}</span>
-                  </div>
-                </div>
-                <div class="achievement-row">
-                  <div class="achievement-label">
-                    <span>📅</span> Tanggal:
-                  </div>
-                  <div class="achievement-value">${achievement.tanggalLomba || "-"}</div>
-                </div>
-                <div class="achievement-row">
-                  <div class="achievement-label">
-                    <span>🏢</span> Penyelenggara:
-                  </div>
-                  <div class="achievement-value">${achievement.penyelenggara || "-"}</div>
-                </div>
-                ${achievement.sertifikat ? `
-                <div class="achievement-row">
-                  <div class="achievement-label">
-                    <span>📄</span> Sertifikat:
-                  </div>
-                  <div class="achievement-value">
-                    <a href="${achievement.sertifikat}" target="_blank" style="color: var(--primary); text-decoration: none;">
-                      Lihat Sertifikat
-                    </a>
-                  </div>
-                </div>
-                ` : ''}
-              </div>
             </div>
-          `;
-        });
+        </header>
         
-        achievementsHTML += '</div>';
-        container.innerHTML = achievementsHTML;
-      }
-      
-      modal.style.display = "flex";
-    }
-    
-    // Fungsi untuk menutup modal
-    function closeAchievementModal() {
-      const modal = document.getElementById("achievement-modal");
-      modal.style.display = "none";
-    }
-    
-    // Fungsi untuk menampilkan error
-    function showError(message) {
-      const container = document.getElementById("student-list");
-      container.innerHTML = `
-        <div class="error">
-          <span class="error-icon">⚠️</span>
-          <p>${message}</p>
-          <button onclick="loadStudentData()" style="margin-top: 15px; padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer;">Coba Lagi</button>
+        <!-- Search -->
+        <div class="search-container">
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <input 
+                type="text" 
+                class="search-box" 
+                id="search-input" 
+                placeholder="Cari siswa berdasarkan nama, kelas, atau prestasi..."
+                aria-label="Cari siswa"
+            >
         </div>
-      `;
-      document.getElementById("student-count").textContent = "Error memuat data";
-    }
-    
-    // Fungsi untuk memperbarui jumlah siswa
-    function updateStudentCount(count) {
-      const countElement = document.getElementById("student-count");
-      countElement.textContent = `${count} Siswa Terdaftar`;
-    }
-    
-    // Fungsi untuk melakukan pencarian
-    function searchStudents() {
-      const searchTerm = document.getElementById("search-input").value.toLowerCase().trim();
-      
-      if (searchTerm === "") {
-        renderStudentList(allStudents);
-        updateStudentCount(allStudents.length);
-        return;
-      }
-      
-      const filteredStudents = allStudents.filter(student => {
-        return student.displayName.includes(searchTerm) || 
-               student.displayClass.includes(searchTerm) ||
-               student.nama.toLowerCase().includes(searchTerm);
-      });
-      
-      renderStudentList(filteredStudents);
-      updateStudentCount(filteredStudents.length);
-    }
-    
-    // Inisialisasi saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', function() {
-      loadStudentData();
-      
-      // Tambahkan event listener untuk pencarian
-      const searchInput = document.getElementById("search-input");
-      searchInput.addEventListener('input', searchStudents);
-      
-      // Tambahkan event listener untuk enter pada pencarian
-      searchInput.addEventListener('keyup', function(event) {
-        if (event.key === "Enter") {
-          searchStudents();
+        
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">Semua Siswa</button>
+            <button class="filter-tab" data-filter="prestasi">Memiliki Prestasi</button>
+            <button class="filter-tab" data-filter="nasional">Prestasi Nasional+</button>
+            <button class="filter-tab" data-filter="juara1">Juara 1</button>
+        </div>
+        
+        <!-- Student List -->
+        <div class="student-list" id="student-list">
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Memuat data siswa...</p>
+            </div>
+        </div>
+        
+        <!-- Achievement Modal -->
+        <div class="achievement-modal" id="achievement-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Prestasi Siswa</h2>
+                    <button class="close-modal" id="close-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="achievement-container"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Data diperbarui dari Google Sheets • 
+                <a href="https://docs.google.com/spreadsheets/d/1MyH_2bsqGYi-iVBa4sM7poBnDScK7EO88GAdO2F_j88" target="_blank">Lihat Data Siswa</a> • 
+                <a href="https://docs.google.com/spreadsheets/d/1-r5AOD55cd85-i3k5g9Ntr3CP8JbVJct7mLyKhbGHOc" target="_blank">Lihat Data Prestasi</a>
+            </p>
+            <p class="mt-2">Sistem Informasi Siswa Sosial Humaniora © 2024</p>
+        </footer>
+    </div>
+
+    <script>
+        // Konfigurasi Sheets
+        const studentSheetID = "1MyH_2bsqGYi-iVBa4sM7poBnDScK7EO88GAdO2F_j88";
+        const achievementSheetID = "1-r5AOD55cd85-i3k5g9Ntr3CP8JbVJct7mLyKhbGHOc";
+        const studentSheetName = "Form Responses 1";
+        const achievementSheetName = "Form Responses 1";
+        
+        // Query untuk data siswa (Nama, Kelas, Foto)
+        const studentQuery = encodeURIComponent("SELECT B, C, E");
+        const studentUrl = `https://docs.google.com/spreadsheets/d/${studentSheetID}/gviz/tq?sheet=${studentSheetName}&tq=${studentQuery}`;
+        
+        // Query untuk data prestasi (Nama Peserta, Tingkat Juara, Juara, Upload sertifikat, Tanggal Lomba, Penyelenggara)
+        // Kolom: A=Timestamp, B=Nama Peserta, C=Tingkat juara, D=Juara, E=Upload sertifikat, F=Tanggal Lomba, G=Penyelenggara
+        const achievementQuery = encodeURIComponent("SELECT B, C, D, E, F, G");
+        const achievementUrl = `https://docs.google.com/spreadsheets/d/${achievementSheetID}/gviz/tq?sheet=${achievementSheetName}&tq=${achievementQuery}`;
+        
+        let allStudents = [];
+        let allAchievements = [];
+        let filteredStudents = [];
+        let currentFilter = 'all';
+        let currentSearch = '';
+        
+        // Fungsi untuk memuat data siswa
+        async function loadStudentData() {
+            try {
+                showLoading();
+                
+                const response = await fetch(studentUrl);
+                const text = await response.text();
+                const data = JSON.parse(text.substr(47).slice(0, -2));
+                const rows = data.table.rows;
+                
+                allStudents = [];
+                
+                rows.forEach(r => {
+                    const nama = r.c[0]?.v || "-";
+                    const kelas = r.c[1]?.v || "-";
+                    const fotoLink = r.c[2]?.v || "";
+                    
+                    // Konversi link Google Drive ke iframe preview
+                    let iframeSrc = "";
+                    if (fotoLink.includes("drive.google.com")) {
+                        const match = fotoLink.match(/\/d\/(.*?)(\/|$)/);
+                        if (match) iframeSrc = `https://drive.google.com/file/d/${match[1]}/preview`;
+                    }
+                    
+                    allStudents.push({
+                        id: allStudents.length + 1,
+                        nama: nama.trim(),
+                        kelas: kelas.trim(),
+                        foto: iframeSrc,
+                        displayName: nama.toLowerCase(),
+                        displayClass: kelas.toLowerCase(),
+                        achievements: []
+                    });
+                });
+                
+                // Muat data prestasi setelah data siswa selesai
+                await loadAchievementData();
+                
+            } catch (err) {
+                showError("Gagal memuat data siswa. Periksa koneksi internet dan pastikan Google Sheets diatur ke publik.");
+                console.error(err);
+            }
         }
-      });
-      
-      // Tambahkan event listener untuk menutup modal
-      const closeButton = document.getElementById("close-modal");
-      closeButton.addEventListener('click', closeAchievementModal);
-      
-      // Tutup modal saat klik di luar konten modal
-      const modal = document.getElementById("achievement-modal");
-      modal.addEventListener('click', function(event) {
-        if (event.target === modal) {
-          closeAchievementModal();
+        
+        // Fungsi untuk memuat data prestasi
+        async function loadAchievementData() {
+            try {
+                const response = await fetch(achievementUrl);
+                const text = await response.text();
+                const data = JSON.parse(text.substr(47).slice(0, -2));
+                const rows = data.table.rows;
+                
+                allAchievements = [];
+                
+                rows.forEach((r, index) => {
+                    // Lewati header (baris pertama)
+                    if (index === 0) return;
+                    
+                    const namaPeserta = r.c[0]?.v || "";
+                    const tingkatJuara = r.c[1]?.v || "";
+                    const juara = r.c[2]?.v || "";
+                    const sertifikat = r.c[3]?.v || "";
+                    const tanggalLomba = r.c[4]?.v || "";
+                    const penyelenggara = r.c[5]?.v || "";
+                    
+                    // Validasi data
+                    if (namaPeserta && namaPeserta !== "Nama Peserta" && tingkatJuara) {
+                        // Pisahkan nama jika ada koma (untuk tim/kelompok)
+                        const namaArray = namaPeserta.split(',').map(n => n.trim());
+                        
+                        namaArray.forEach(nama => {
+                            if (nama) {
+                                allAchievements.push({
+                                    id: allAchievements.length + 1,
+                                    namaPeserta: nama,
+                                    tingkatJuara: tingkatJuara.trim(),
+                                    juara: juara.trim(),
+                                    sertifikat: formatGoogleDriveLink(sertifikat.trim()),
+                                    tanggalLomba: formatDate(tanggalLomba),
+                                    penyelenggara: penyelenggara.trim() || "-"
+                                });
+                            }
+                        });
+                    }
+                });
+                
+                // Hubungkan prestasi dengan siswa
+                matchAchievementsWithStudents();
+                
+                // Update statistik
+                updateStatistics();
+                
+                // Render daftar siswa
+                applyFilters();
+                
+            } catch (err) {
+                showError("Gagal memuat data prestasi.");
+                console.error(err);
+            }
         }
-      });
-      
-      // Tutup modal dengan tombol ESC
-      document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape") {
-          closeAchievementModal();
+        
+        // Format link Google Drive untuk preview
+        function formatGoogleDriveLink(url) {
+            if (!url || !url.includes("drive.google.com")) return "";
+            
+            // Coba ekstrak file ID dari berbagai format URL Google Drive
+            const patterns = [
+                /\/d\/(.*?)(\/|$)/,
+                /id=(.*?)(&|$)/,
+                /open\?id=(.*?)(&|$)/
+            ];
+            
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match && match[1]) {
+                    return `https://drive.google.com/file/d/${match[1]}/preview`;
+                }
+            }
+            
+            return url;
         }
-      });
-    });
-  </script>
+        
+        // Format tanggal
+        function formatDate(dateString) {
+            if (!dateString) return "-";
+            
+            try {
+                // Coba parsing berbagai format tanggal
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return dateString;
+                
+                return date.toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            } catch {
+                return dateString;
+            }
+        }
+        
+        // Fungsi untuk menghubungkan prestasi dengan siswa berdasarkan nama
+        function matchAchievementsWithStudents() {
+            // Reset prestasi semua siswa
+            allStudents.forEach(student => {
+                student.achievements = [];
+            });
+            
+            // Untuk setiap prestasi, cari siswa dengan nama yang cocok
+            allAchievements.forEach(achievement => {
+                const achievementName = achievement.namaPeserta.toLowerCase();
+                
+                // Cari siswa dengan nama yang cocok (fuzzy matching)
+                const matchingStudents = allStudents.filter(student => {
+                    const studentName = student.nama.toLowerCase();
+                    
+                    // 1. Exact match (setelah normalisasi)
+                    const normalizedStudentName = studentName.replace(/\s+/g, ' ').trim();
+                    const normalizedAchievementName = achievementName.replace(/\s+/g, ' ').trim();
+                    
+                    if (normalizedStudentName === normalizedAchievementName) {
+                        return true;
+                    }
+                    
+                    // 2. Contains match (satu nama mengandung nama lain)
+                    if (studentName.includes(achievementName) || achievementName.includes(studentName)) {
+                        return true;
+                    }
+                    
+                    // 3. Match tanpa gelar/title
+                    const cleanStudentName = studentName.replace(/\b(s\.|s\.h\.|s\.pd\.|dr\.|drg\.|apt\.)\b/g, '').trim();
+                    const cleanAchievementName = achievementName.replace(/\b(s\.|s\.h\.|s\.pd\.|dr\.|drg\.|apt\.)\b/g, '').trim();
+                    
+                    if (cleanStudentName === cleanAchievementName) {
+                        return true;
+                    }
+                    
+                    // 4. Match berdasarkan kata kunci (2-3 kata terakhir)
+                    const studentWords = cleanStudentName.split(' ');
+                    const achievementWords = cleanAchievementName.split(' ');
+                    
+                    if (studentWords.length >= 2 && achievementWords.length >= 2) {
+                        const studentLastTwo = studentWords.slice(-2).join(' ');
+                        const achievementLastTwo = achievementWords.slice(-2).join(' ');
+                        
+                        if (studentLastTwo === achievementLastTwo) {
+                            return true;
+                        }
+                    }
+                    
+                    return false;
+                });
+                
+                // Tambahkan prestasi ke setiap siswa yang cocok
+                matchingStudents.forEach(student => {
+                    // Cek apakah prestasi ini sudah ada (untuk menghindari duplikat)
+                    const isDuplicate = student.achievements.some(a => 
+                        a.namaPeserta === achievement.namaPeserta &&
+                        a.juara === achievement.juara &&
+                        a.tanggalLomba === achievement.tanggalLomba
+                    );
+                    
+                    if (!isDuplicate) {
+                        student.achievements.push(achievement);
+                    }
+                });
+            });
+        }
+        
+        // Fungsi untuk update statistik
+        function updateStatistics() {
+            // Jumlah siswa
+            document.getElementById('student-count').textContent = allStudents.length;
+            
+            // Jumlah prestasi total
+            document.getElementById('achievement-count').textContent = allAchievements.length;
+            
+            // Jumlah siswa berprestasi (setidaknya 1 prestasi)
+            const studentsWithAchievements = allStudents.filter(s => s.achievements.length > 0).length;
+            document.getElementById('winner-count').textContent = studentsWithAchievements;
+        }
+        
+        // Fungsi untuk menampilkan daftar siswa
+        function renderStudentList(students) {
+            const container = document.getElementById("student-list");
+            
+            if (students.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h3>Tidak ditemukan siswa</h3>
+                        <p>Tidak ada siswa yang sesuai dengan pencarian "${currentSearch}"</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = "";
+            
+            students.forEach(student => {
+                const studentCard = document.createElement("div");
+                studentCard.className = "student-card";
+                
+                const photoContent = student.foto 
+                    ? `<iframe src="${student.foto}" allowfullscreen title="Foto ${student.nama}"></iframe>`
+                    : `<div class="no-photo"><i class="fas fa-user-graduate"></i></div>`;
+                
+                // Tampilkan jumlah prestasi
+                const achievementCount = student.achievements.length;
+                const achievementText = achievementCount === 1 ? "1 Prestasi" : `${achievementCount} Prestasi`;
+                
+                const achievementBadgeClass = achievementCount > 0 
+                    ? "achievement-badge" 
+                    : "achievement-badge empty";
+                
+                studentCard.innerHTML = `
+                    <div class="student-photo">
+                        ${photoContent}
+                    </div>
+                    <div class="student-info">
+                        <h3 class="student-name">${student.nama}</h3>
+                        <div class="student-class">
+                            <i class="fas fa-graduation-cap"></i>
+                            ${student.kelas}
+                        </div>
+                        <button class="${achievementBadgeClass}" data-id="${student.id}">
+                            <i class="fas fa-trophy"></i>
+                            ${achievementText}
+                        </button>
+                    </div>
+                `;
+                
+                // Tambahkan event listener untuk badge prestasi
+                const badge = studentCard.querySelector('.achievement-badge:not(.empty)');
+                if (badge) {
+                    badge.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        showStudentAchievements(student);
+                    });
+                }
+                
+                container.appendChild(studentCard);
+            });
+        }
+        
+        // Fungsi untuk menampilkan modal prestasi siswa
+        function showStudentAchievements(student) {
+            const modal = document.getElementById("achievement-modal");
+            const title = document.getElementById("modal-title");
+            const container = document.getElementById("achievement-container");
+            
+            title.textContent = `Prestasi ${student.nama}`;
+            
+            if (student.achievements.length === 0) {
+                container.innerHTML = `
+                    <div class="no-achievements">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Belum Ada Prestasi</h3>
+                        <p>${student.nama} belum memiliki data prestasi yang tercatat.</p>
+                    </div>
+                `;
+            } else {
+                let achievementsHTML = '<div class="achievement-list">';
+                
+                // Urutkan prestasi berdasarkan tingkat (internasional -> nasional -> provinsi -> kabupaten -> kecamatan)
+                const sortedAchievements = [...student.achievements].sort((a, b) => {
+                    const levelOrder = {
+                        'internasional': 5,
+                        'nasional': 4,
+                        'provinsi': 3,
+                        'kabupaten': 2,
+                        'kecamatan': 1
+                    };
+                    
+                    const aLevel = a.tingkatJuara.toLowerCase();
+                    const bLevel = b.tingkatJuara.toLowerCase();
+                    
+                    return (levelOrder[bLevel] || 0) - (levelOrder[aLevel] || 0);
+                });
+                
+                sortedAchievements.forEach((achievement, index) => {
+                    // Tentukan kelas CSS berdasarkan tingkat juara
+                    let levelClass = "";
+                    const tingkat = achievement.tingkatJuara.toLowerCase();
+                    
+                    if (tingkat.includes("kecamatan")) levelClass = "level-kecamatan";
+                    else if (tingkat.includes("kabupaten")) levelClass = "level-kabupaten";
+                    else if (tingkat.includes("provinsi")) levelClass = "level-provinsi";
+                    else if (tingkat.includes("nasional")) levelClass = "level-nasional";
+                    else if (tingkat.includes("internasional")) levelClass = "level-internasional";
+                    
+                    achievementsHTML += `
+                        <div class="achievement-item">
+                            <div class="achievement-title">
+                                <i class="fas fa-award"></i>
+                                Prestasi ${index + 1}
+                            </div>
+                            <div class="achievement-details">
+                                <div class="achievement-row">
+                                    <div class="achievement-label">
+                                        <i class="fas fa-medal"></i> Juara:
+                                    </div>
+                                    <div class="achievement-value">${achievement.juara || "-"}</div>
+                                </div>
+                                <div class="achievement-row">
+                                    <div class="achievement-label">
+                                        <i class="fas fa-chart-bar"></i> Tingkat:
+                                    </div>
+                                    <div class="achievement-value">
+                                        <span class="level-badge ${levelClass}">${achievement.tingkatJuara}</span>
+                                    </div>
+                                </div>
+                                <div class="achievement-row">
+                                    <div class="achievement-label">
+                                        <i class="fas fa-calendar-alt"></i> Tanggal:
+                                    </div>
+                                    <div class="achievement-value">${achievement.tanggalLomba}</div>
+                                </div>
+                                <div class="achievement-row">
+                                    <div class="achievement-label">
+                                        <i class="fas fa-university"></i> Penyelenggara:
+                                    </div>
+                                    <div class="achievement-value">${achievement.penyelenggara}</div>
+                                </div>
+                                ${achievement.sertifikat ? `
+                                <div class="achievement-row">
+                                    <div class="achievement-label">
+                                        <i class="fas fa-file-certificate"></i> Sertifikat:
+                                    </div>
+                                    <div class="achievement-value">
+                                        <a href="${achievement.sertifikat}" class="sertifikat-link" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i>
+                                            Lihat Sertifikat
+                                        </a>
+                                    </div>
+                                </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                achievementsHTML += '</div>';
+                container.innerHTML = achievementsHTML;
+            }
+            
+            modal.style.display = "flex";
+        }
+        
+        // Fungsi untuk menerapkan filter dan pencarian
+        function applyFilters() {
+            let result = [...allStudents];
+            
+            // Terapkan filter
+            if (currentFilter === 'prestasi') {
+                result = result.filter(student => student.achievements.length > 0);
+            } else if (currentFilter === 'nasional') {
+                result = result.filter(student => 
+                    student.achievements.some(a => 
+                        a.tingkatJuara.toLowerCase().includes('nasional') || 
+                        a.tingkatJuara.toLowerCase().includes('internasional')
+                    )
+                );
+            } else if (currentFilter === 'juara1') {
+                result = result.filter(student => 
+                    student.achievements.some(a => 
+                        a.juara.toLowerCase().includes('1') || 
+                        a.juara.toLowerCase().includes('pertama') ||
+                        a.juara.toLowerCase().includes('gold') ||
+                        a.juara.toLowerCase().includes('emas')
+                    )
+                );
+            }
+            
+            // Terapkan pencarian
+            if (currentSearch) {
+                const searchTerm = currentSearch.toLowerCase();
+                result = result.filter(student => {
+                    // Cari di nama
+                    if (student.nama.toLowerCase().includes(searchTerm)) return true;
+                    
+                    // Cari di kelas
+                    if (student.kelas.toLowerCase().includes(searchTerm)) return true;
+                    
+                    // Cari di prestasi
+                    if (student.achievements.some(achievement => 
+                        achievement.juara.toLowerCase().includes(searchTerm) ||
+                        achievement.tingkatJuara.toLowerCase().includes(searchTerm) ||
+                        achievement.penyelenggara.toLowerCase().includes(searchTerm)
+                    )) return true;
+                    
+                    return false;
+                });
+            }
+            
+            filteredStudents = result;
+            renderStudentList(filteredStudents);
+        }
+        
+        // Fungsi untuk menutup modal
+        function closeAchievementModal() {
+            const modal = document.getElementById("achievement-modal");
+            modal.style.display = "none";
+        }
+        
+        // Fungsi untuk menampilkan loading
+        function showLoading() {
+            const container = document.getElementById("student-list");
+            container.innerHTML = `
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    <p>Memuat data siswa...</p>
+                </div>
+            `;
+        }
+        
+        // Fungsi untuk menampilkan error
+        function showError(message) {
+            const container = document.getElementById("student-list");
+            container.innerHTML = `
+                <div class="error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Terjadi Kesalahan</h3>
+                    <p>${message}</p>
+                    <button class="retry-button" onclick="loadStudentData()">
+                        <i class="fas fa-redo"></i> Coba Lagi
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Muat data
+            loadStudentData();
+            
+            // Event listener untuk pencarian
+            const searchInput = document.getElementById("search-input");
+            searchInput.addEventListener('input', function() {
+                currentSearch = this.value.trim();
+                applyFilters();
+            });
+            
+            // Event listener untuk filter tabs
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Hapus class active dari semua tab
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Tambah class active ke tab yang diklik
+                    this.classList.add('active');
+                    
+                    // Update filter aktif
+                    currentFilter = this.dataset.filter;
+                    
+                    // Terapkan filter
+                    applyFilters();
+                });
+            });
+            
+            // Event listener untuk menutup modal
+            const closeButton = document.getElementById("close-modal");
+            closeButton.addEventListener('click', closeAchievementModal);
+            
+            // Tutup modal saat klik di luar konten modal
+            const modal = document.getElementById("achievement-modal");
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeAchievementModal();
+                }
+            });
+            
+            // Tutup modal dengan tombol ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === "Escape") {
+                    closeAchievementModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
